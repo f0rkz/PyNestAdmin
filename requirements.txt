@@ -1,0 +1,4 @@
+git+https://github.com/jkoelker/python-nest.git#egg=python-nest
+flask
+flask-bootstrap
+flask-wtf
