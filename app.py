@@ -53,12 +53,23 @@ class OptionsForm(Form):
 
 # Web facing routes
 @app.route("/")
-def root():
+def dashboard():
     if session.get('logged_in'):
-        return render_template('dashboard.html')
+        return render_template('pages/dashboard.html')
     else:
         return redirect(url_for('login'))
 
+@app.route("/graphs")
+def graphs():
+    abort(401)
+
+@app.route("/weather")
+def weather():
+    abort(401)
+
+@app.route("/optimize")
+def optimize():
+    abort(401)
 
 # Check for authentication
 @app.route("/login", methods=['GET', 'POST'])
@@ -72,8 +83,14 @@ def login():
         else:
             session['logged_in'] = True
             flash('You were logged in')
-            return redirect(url_for('root'))
+            return redirect(url_for('dashboard'))
     return render_template('pages/login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('login'))
 
 # Options route
 @app.route("/options", methods=['GET', 'POST'])

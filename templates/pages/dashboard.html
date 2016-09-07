@@ -11,7 +11,7 @@ body {
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% endblock %}
 {% block navbar %}
-    {% include "pages/partials/navbar.html" %}
+    {% include "pages/partials/nav.html" %}
 {% endblock %}
 {% block content %}
 {% for message in get_flashed_messages() %}

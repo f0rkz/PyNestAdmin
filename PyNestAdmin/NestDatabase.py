@@ -69,9 +69,9 @@ class NestDatabase(object):
         cur = con.cursor()
         cur.execute("select * from data where device_serial = '{}'".format(serial))
         data_list = cur.fetchall()
-        data = {}
+        data = []
         for item in data_list:
-            data[item['id']] = item
+            data.append(item)
         con.close()
         return data
 
